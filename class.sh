@@ -11,6 +11,8 @@ SLOT_C_LINK="https://meet.google.com/lookup/a6slokefcd?authuser=1&hs=179"
 SLOT_D_LINK="https://meet.google.com/lookup/hd5r2rbgmc?authuser=1&hs=179"
 SLOT_E_LINK="https://meet.google.com/lookup/bge7siti43?authuser=1&hs=179"
 
+SLOT_C_ATTENDANCE_LINK="https://drive.google.com/open?id=1Ly4sjfkIb00gvdHoX1ztpUOpC4VwO9oxXrPRVls0FXE&authuser=1"
+
 DAY_OF_WEEK=$(date +%u)
 
 HOUR_OF_DAY=$(date +%_H)
@@ -74,7 +76,9 @@ getLink () {
 	elif [[ $HOUR_OF_DAY -eq 11 ]]
 	then
 		echo "$SLOT_C_NAME at $SLOT_C_LINK"
+		echo "Mark Attendace at $SLOT_C_ATTENDANCE_LINK"
 		[[ $OPEN_IN_BROWSER = true ]] && google-chrome $SLOT_C_LINK
+		[[ $OPEN_IN_BROWSER = true ]] && google-chrome $SLOT_C_ATTENDANCE_LINK
 	elif [[ $HOUR_OF_DAY -eq 12 ]]
 	then
 		echo "$SLOT_D_NAME at $SLOT_D_LINK"
