@@ -13,7 +13,7 @@ SLOT_E_LINK="https://meet.google.com/lookup/bge7siti43?authuser=1&hs=179"
 
 DAY_OF_WEEK=$(date +%u)
 
-HOUR_OF_DAY=$(date +%H)
+HOUR_OF_DAY=$(date +%_H)
 
 OPEN_IN_BROWSER=true
 NEXT_CLASS=false
@@ -35,9 +35,17 @@ increment() {
 }
 
 checkCurrentTime () {
-	CURRENT_HOUR=$(date +%H)
+	CURRENT_HOUR=$(date +%_H)
 	echo "$CURRENT_HOUR"
-	if [[ CURRENT_HOUR -eq 13 && $NEXT_CLASS = false ]]
+	if [[ CURRENT_HOUR -eq 9 && $NEXT_CLASS = false ]]
+	then
+		echo "Break!"
+		exit 0
+	elif [[ CURRENT_HOUR -eq 12 && $NEXT_CLASS = true ]]
+	then
+		echo "Break!"
+		exit 0
+	elif [[ CURRENT_HOUR -eq 13 && $NEXT_CLASS = false ]]
 	then
 		echo "Break!"
 		exit 0
