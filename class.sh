@@ -39,11 +39,7 @@ increment() {
 checkCurrentTime () {
 	CURRENT_HOUR=$(date +%_H)
 	echo "$CURRENT_HOUR"
-	if [[ CURRENT_HOUR -eq 9 && $NEXT_CLASS = false ]]
-	then
-		echo "Break!"
-		exit 0
-	elif [[ CURRENT_HOUR -eq 12 && $NEXT_CLASS = true ]]
+	if [[ CURRENT_HOUR -eq 12 && $NEXT_CLASS = true ]]
 	then
 		echo "Break!"
 		exit 0
