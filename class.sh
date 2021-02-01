@@ -39,7 +39,11 @@ increment() {
 checkCurrentTime () {
 	CURRENT_HOUR=$(date +%_H)
 	echo "$CURRENT_HOUR"
-	if [[ CURRENT_HOUR -eq 12 && $NEXT_CLASS = true ]]
+	if [[ CURRENT_HOUR -lt 9 && $NEXT_CLASS = false ]]
+	then
+		echo "Day hasn't started yet!"
+		exit 0
+	elif [[ CURRENT_HOUR -eq 12 && $NEXT_CLASS = true ]]
 	then
 		echo "Break!"
 		exit 0
@@ -79,13 +83,13 @@ getLink () {
 	then
 		echo "$SLOT_D_NAME at $SLOT_D_LINK"
 		[[ $OPEN_IN_BROWSER = true ]] && google-chrome $SLOT_D_LINK
-	elif [[ $HOUR_OF_DAY -eq 13 ]]
-	then
-		echo "Break!"
 	elif [[ $HOUR_OF_DAY -eq 14 ]]
 	then
 		echo "$SLOT_E_NAME at $SLOT_E_LINK"
 		[[ $OPEN_IN_BROWSER = true ]] && google-chrome $SLOT_E_LINK
+	else
+		echo "Doesn't seem like there's anything going on at this hour!"
+		exit 0
 	fi
 } 
 
